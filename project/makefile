@@ -11,7 +11,7 @@ AS	       = msp430-elf-as
 all: run.elf
 
 #additional rules
-run.elf: ${COMMON_OBJECTS} switches.o p1_interrupt_handler.o dimMain.o led.o stateMachines.o wdInterruptHandler.o libTimer.a
+run.elf: ${COMMON_OBJECTS} switches.o p1_interrupt_handler.o dimMain.o led.o stateMachines.o wdInterruptHandler.o buzzer.o libTimer.a
 	${CC} ${CFLAGS} ${LDFLAGS} -o $@ $^
 
 load: run.elf
@@ -26,5 +26,6 @@ wdInterruptHandler.o: stateMachines.h
 
 switches.o: switches.h
 
-stateMachines.o: led.h stateMachines.h
+stateMachines.o: led.h  stateMachines.h
 
+buzzer.o: buzzer.h
