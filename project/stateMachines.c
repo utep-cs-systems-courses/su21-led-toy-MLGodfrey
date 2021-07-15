@@ -32,15 +32,15 @@ void blink_button_advance(){
     buzzer_set_period(0);
     static char state = 0;
     switch(state){
-  case 0: buzzer_set_period(3822); red_on=0; green_on=0; state++; break;
-  case 1: buzzer_set_period(2551); red_on=0; green_on=1; state++; break;
-  case 2: buzzer_set_period(3822); red_on=1; green_on=0; state++; break;
-  case 3: buzzer_set_period(2551); red_on=1; green_on=1; state=0; break;
-  default: state = 0;
+    case 0: buzzer_set_period(3822); red_on=0; green_on=0; state++; break; //count 0
+    case 1: buzzer_set_period(2551); red_on=0; green_on=1; state++; break; //count 1
+    case 2: buzzer_set_period(3822); red_on=1; green_on=0; state++; break; //count 2
+    case 3: buzzer_set_period(2551); red_on=1; green_on=1; state=0; break; //count 3
+    default: state = 0; //redundantly ensures state resets to 0
     }
     led_changed=1;
     led_update();
-  } else {
+  } else { // makes sure that board goes quiet once no buttons are pressed
     button_four=0;
     turn_off_red();
     turn_off_green();
@@ -50,7 +50,7 @@ void blink_button_advance(){
   
 
 
-void turn_on_red(){
+void turn_on_red(){ //quick way to turn on/off red/green
   red_on=1;
   led_changed = 1;
   led_update();
