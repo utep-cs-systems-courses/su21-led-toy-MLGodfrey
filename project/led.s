@@ -1,8 +1,8 @@
 #include <msp430.h>
 #include "led.h"
+
 	.arch msp430g2553
 	.p2align 1,0
-	
 	.text
 	.extern LED_RED
 	.extern LED_GREEN
@@ -26,13 +26,10 @@ redVal:
 greenVal:
 	.byte 0
 	.byte LED_GREEN
-	
-
 led_init:
 	bis LEDS, P1DIR
 	mov #1, led_changed
 	call led_update()
-
 led_update:
 	cmp #1, led_changed
 	JNZ out
